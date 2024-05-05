@@ -1,8 +1,7 @@
+// eslint-disable-next-line no-unused-vars
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom'; 
 import './App.css'; // Import your CSS file
 import teetlogo from './assets/teet.png';
-import { FaGoogle, FaFacebook } from "react-icons/fa";
 
 function App() {
   const [username, setUsername] = useState('');
@@ -19,21 +18,25 @@ function App() {
     window.location.href = 'https://www.facebook.com/';
   };
 
+  // eslint-disable-next-line no-unused-vars
   const handleGoogleLoginSuccess = (response) => {
     console.log('Google Login Success:', response);
     // Handle authentication success (e.g., send token to server)
   };
 
+  // eslint-disable-next-line no-unused-vars
   const handleGoogleLoginFailure = (error) => {
     console.error('Google Login Error:', error);
     setErrorMessage('Google Login Error');
   };
 
+  // eslint-disable-next-line no-unused-vars
   const handleFacebookLoginSuccess = (response) => {
     console.log('Facebook Login Success:', response);
     // Handle authentication success (e.g., send token to server)
   };
 
+  // eslint-disable-next-line no-unused-vars
   const handleFacebookLoginFailure = (error) => {
     console.error('Facebook Login Error:', error);
     setErrorMessage('Facebook Login Error');
@@ -90,6 +93,7 @@ function App() {
         <img className="teethlogo" src={teetlogo} alt="teeth logo" />
         <h2 className='logoname'>Denteeth</h2>
         <p className='description'>
+          {/* eslint-disable-next-line react/no-unescaped-entities */}
           It's a website that can help users by recommending <br />
           a solution or helping users make an appointment <br />
           with a doctor nearby.
