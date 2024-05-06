@@ -64,11 +64,16 @@ function App() {
 
   const handleSignUp = (event) => {
     event.preventDefault();
-    console.log('Username:', username);
-    console.log('Email:', email);
-    console.log('Password:', password);
-    console.log('Confirm Password:', confirmPassword);
+    const registerReguest = {username, email, password}
+    console.log(registerReguest)
     // Add logic to send the form data to the server for account creation
+    fetch("http://localhost:8080/api/v1/registration",{
+      method:"POST",
+      headers:{"Content-Type":"Application/json"},
+      body:JSON.stringify(registerReguest)
+    }).then(()=>{
+      console.log("User added")
+    })
   };
 
   const handleLoginFormSwitch = () => {
@@ -78,13 +83,32 @@ function App() {
 
   const handleLogin = (event) => {
     event.preventDefault();
-    // Validate login credentials (dummy validation for demonstration)
-    if (email === 'test@example.com' && password === 'password') {
-      alert('Login successful!');
-    } else {
-      setErrorMessage('Invalid email or password.');
-    }
-  };
+    // Proceed with login request
+    const loginRequest = { email, password }; // Assuming email and password are obtained from input fields or elsewhere
+    console.log(loginRequest)
+    fetch("http://localhost:8080/api/v1/login", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(loginRequest)
+    })
+    .then(response => {
+        // Handle response, e.g., check status and process data
+        // For example:
+        if (response.ok) {
+            // If response status is in the range 200-299
+            console.log("Login request succeeded");
+        } else {
+            // If response status is outside the range 200-299
+            console.error("Login request failed");
+        }
+    })
+    .catch(error => {
+        // Handle error
+        console.error("Error occurred during login request:", error);
+    });
+}
+
+  
 
   return (
     <div className="container">
@@ -135,5 +159,6 @@ function App() {
     </div>
   );
 }
+
 
 export default App;
